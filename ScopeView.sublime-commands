@@ -1,0 +1,23 @@
+[
+    { "caption": "Preferences: ScopeView", "command": "edit_settings",
+      "args": {
+          "base_file": "${packages}/ScopeView/ScopeView.sublime-settings",
+          "default": "{\n\t$0\n}\n"
+      }
+    },
+    { "caption": "Preferences: ScopeView Key Bindings", "command": "edit_settings",
+      "args": {
+          "base_file": "${packages}/ScopeView/Default (${platform}).sublime-keymap",
+          "default": "[\n\t$0\n]\n"
+      }
+    },
+    { "caption": "ScopeView: Open Readme", "command": "open_file",
+      "args": {
+          "file": "${packages}/ScopeView/README.md"
+      }
+    },
+    { "caption": "ScopeView: View Scopes", "command": "view_scopes"},
+    { "caption": "ScopeView: Clear Scopes", "command": "clear_scopes"},
+    { "caption": "ScopeView: Toggle Scope Display", "command": "toggle_scope_display"},
+
+]

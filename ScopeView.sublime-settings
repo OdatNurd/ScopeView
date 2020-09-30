@@ -1,0 +1,14 @@
+{
+    // When true, whenver the plugin reloads (such as when Sublime restarts),
+    // any view that had scope display turned on will have its scope display
+    // immediately updated.
+    //
+    // If set to false, the scope display for views that had it turned on will
+    // be turned off when the plugin reloads instead.
+    "restore_at_startup": true,
+
+    // The default is to display the scope under the cursor in a phantom on the
+    // line below the current line. Setting this setting to true will display
+    // the phantom after the last line (as seen in the YouTube video).
+    "display_scope_at_eof": false
+}

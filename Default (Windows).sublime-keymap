@@ -1,0 +1,18 @@
+[
+    {
+        "keys": ["alt+shift+s"],
+        "command": "show_overlay",
+        "args": {
+            "overlay": "command_palette",
+            "command": "view_scopes",
+        },
+    },
+    {
+        "keys": ["alt+shift+c"],
+        "command": "show_overlay",
+        "args": {
+            "overlay": "command_palette",
+            "command": "clear_scopes",
+        },
+    },
+]
