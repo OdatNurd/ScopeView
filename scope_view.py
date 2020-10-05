@@ -81,7 +81,7 @@ def _display_scope(view):
                             background-color: {bg_color};
                         }}
                     </style>
-                    <div class="scope">{scope}</span>
+                    <div class="scope">{scope}</div>
                 </body>
             """.format(bg_color=bg_color, scope=scope_text.replace(" ", "<br>")),
             sublime.LAYOUT_BELOW
