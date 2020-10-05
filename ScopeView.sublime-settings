@@ -1,4 +1,20 @@
 {
+    // When true and scope display is turned on for a file, this will display
+    // the scope of the character under the cursor in the display phantom.
+    //
+    // At  least one of this or 'display_trace' must be turned on for anything
+    // to  actually display.
+    "display_scope": true,
+
+    // When true and scope display is turned on for a file, this will display
+    // the scope stack of the character under the cursor in the display phantom.
+    //
+    // This requires Sublime Text build 4087 or greater.
+    //
+    // At  least one of this or 'display_scope' must be turned on for anything
+    // to  actually display.
+    "display_trace": false,
+
     // When true, whenver the plugin reloads (such as when Sublime restarts),
     // any view that had scope display turned on will have its scope display
     // immediately updated.

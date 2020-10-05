@@ -22,9 +22,17 @@ will make the package available via Package Control.
 Toggles display of the scope under the cursor on and off for the currently
 active `view`. The display of the scope is controlled by the following settings:
 
-* `restore_at_startup` controls whether or not views that had this turned on when
-you quit Sublime still have it turned on when you restart Sublime. The default
-is to have this turned on.
+* `display_scope` controls whether the scope of the character under the cursor
+is displayed or not. The default is to have this turned on.
+
+* `display_trace` controls whether the context stack for the character under
+the cursor is displayed or not. This allows you to inspect how the syntax got
+to the point where it applied the scope that it did. This requires build 4087
+or greater of Sublime.
+
+* `restore_at_startup` controls whether or not views that had this turned on
+when you quit Sublime still have it turned on when you restart Sublime. The
+default is to have this turned on.
 
 * `display_at_eof` controls whether the inline display appears at the bottom of
 the file or on the line under the first caret in the file. The default for this

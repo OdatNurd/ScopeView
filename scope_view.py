@@ -47,8 +47,17 @@ def _settings_change():
 
 def _display_scope(view):
     """
-    Display the scope of the character under the selection as a phantom.
+    Display the scope of the character under the selection as a phantom,
+    optionally also displaying the context stack as well.
     """
+    settings = sublime.load_settings("ScopeView.sublime-settings")
+    display_scope = settings.get("display_scope", True)
+    display_trace = settings.get("display_trace", False) and hasattr(view, "context_backtrace")
+    display_at_eof = settings.get("display_at_eof", False)
+
+    if not display_scope and not display_trace:
+        return
+
     if not hasattr(_display_scope, "buffer_table"):
         _display_scope.buffer_table = {}
 
@@ -59,13 +68,35 @@ def _display_scope(view):
         phantoms = sublime.PhantomSet(view, "scopes")
         _display_scope.buffer_table[buff_id] = phantoms
 
-    scope_text = view.scope_name(view.sel()[0].b)
+    target = view.size() if display_at_eof else view.sel()[0].b
+    phantom_region = sublime.Region(view.line(target).a)
 
-    settings = sublime.load_settings("ScopeView.sublime-settings")
-    if settings.get("display_at_eof", False):
-        phantom_region = sublime.Region(view.line(view.size()).a)
-    else:
-        phantom_region = sublime.Region(view.line(view.sel()[0].b).a)
+    scope_text = ""
+    stack_text = ""
+    digits_len = 1
+
+    if display_scope:
+        scopes = view.scope_name(view.sel()[0].b)
+        scope_text = '<div class="scope">%s</div>' % scopes.rstrip().replace(" ", "<br>")
+
+    if display_trace:
+        stack = view.context_backtrace(view.sel()[0].b)
+
+        for i, ctx in enumerate(reversed(stack)):
+            digits = '%s' % (i + 1)
+            digits_len = max(len(digits), digits_len)
+            nums = '<span class=nums>%s.</span>' % digits
+
+            if ctx.startswith("anonymous context "):
+                ctx = '<em>%s</em>' % ctx
+            ctx = '<span class=context>%s</span>' % ctx
+
+            if stack_text:
+                stack_text += '\n'
+            stack_text += '<div>%s%s<div>' % (nums, ctx)
+
+        stack_text = '<div class="trace">%s</div>' % stack_text
+        print(stack_text)
 
     bg_color = view.style()["background"]
 
@@ -80,10 +111,25 @@ def _display_scope(view):
                             border-top: 0.1rem solid color(var(--greenish));
                             background-color: {bg_color};
                         }}
+                        div.trace {{
+                            margin-top: 0.5rem;
+                            border-top: 0.1rem solid color(var(--redish));
+                            background-color: {bg_color};
+                        }}
+                        span.nums {{
+                            display: inline-block;
+                            text-align: right;
+                            width: {digits}em;
+                            color: color(var(--foreground) a(0.8))
+                        }}
+                        span.context {{
+                            padding-left: 0.5em;
+                        }}
                     </style>
-                    <div class="scope">{scope}</div>
+                    {scope}
+                    {stack}
                 </body>
-            """.format(bg_color=bg_color, scope=scope_text.replace(" ", "<br>")),
+            """.format(bg_color=bg_color, scope=scope_text, stack=stack_text, digits=digits_len),
             sublime.LAYOUT_BELOW
             )
         ])
