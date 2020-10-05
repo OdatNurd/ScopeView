@@ -10,5 +10,5 @@
     // The default is to display the scope under the cursor in a phantom on the
     // line below the current line. Setting this setting to true will display
     // the phantom after the last line (as seen in the YouTube video).
-    "display_scope_at_eof": false
+    "display_at_eof": false
 }

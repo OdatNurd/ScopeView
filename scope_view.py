@@ -62,7 +62,7 @@ def _display_scope(view):
     scope_text = view.scope_name(view.sel()[0].b)
 
     settings = sublime.load_settings("ScopeView.sublime-settings")
-    if settings.get("display_scope_at_eof", False):
+    if settings.get("display_at_eof", False):
         phantom_region = sublime.Region(view.line(view.size()).a)
     else:
         phantom_region = sublime.Region(view.line(view.sel()[0].b).a)

@@ -26,10 +26,10 @@ active `view`. The display of the scope is controlled by the following settings:
 you quit Sublime still have it turned on when you restart Sublime. The default
 is to have this turned on.
 
-* `display_scope_at_eof` controls whether the inline scope display appears at
-the bottom of the file or on the line under the first caret in the file. The
-default for this is the line under the file, but for clarity in the YouTube
-video this was turned on.
+* `display_at_eof` controls whether the inline display appears at the bottom of
+the file or on the line under the first caret in the file. The default for this
+is the line under the file, but for clarity in the YouTube video this was turned
+on.
 
 ### ScopeView: View Scopes (alt+shift+s)
 
